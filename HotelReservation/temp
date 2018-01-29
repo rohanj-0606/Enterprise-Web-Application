@@ -1,0 +1,11 @@
+id;
+name;
+description;
+overview;
+averageRating;
+price;
+address;
+area;
+city;
+country;
+defaultImage;

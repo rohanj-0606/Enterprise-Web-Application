@@ -1,0 +1,35 @@
+<project default="compile">
+    <target name="compile">
+        <delete dir="dist" />
+        <delete dir="WEB-INF/classes" />
+        <mkdir dir="dist"/>
+	<mkdir dir="WEB-INF/classes"/>
+        <javac srcdir="src" destdir="WEB-INF/classes" includeantruntime="false" debug="on" nowarn="true">
+	<classpath>
+               <fileset dir="WEB-INF/lib">
+		  <exclude name="test/" />
+                  <include name="**/*.jar" />
+               </fileset>
+         </classpath>
+	</javac>
+		<jar destfile="dist/HotelReservation.war"
+         basedir="."
+         >
+		<exclude name="**/src/**" />
+		<exclude name="**/test/**" />
+		<exclude name="dist/" />
+		<exclude name="deploy.sh" />
+		
+		<zipgroupfileset dir="WEB-INF/lib" includes="*.jar" />
+		</jar>
+    </target>
+	
+    <target name="clean">
+	 <delete dir="dist" />
+        <delete dir="WEB-INF/classes" />
+    </target>
+
+<target name="run">
+    <java jar="test/dist/HotelReservation.jar" fork="true"/>
+</target>
+</project>
